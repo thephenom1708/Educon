@@ -1,0 +1,38 @@
+
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'loginNregister/me.css' %}" />
+
+<html>
+    <head>
+        <script src="https://meet.jit.si/external_api.js"></script>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+
+    <script>
+    $(document).ready(function(){
+        var domain = "meet.jit.si";
+        var options = {
+        roomName: "JitsiMeetAPIExample",
+        width: 700,
+        height: 700,
+        parentNode: document.querySelector('#meet')
+    }
+    var api = new JitsiMeetExternalAPI(domain, options);
+    });
+
+    </script>
+    </head>
+    <body>
+<div id="meet">
+</div>
+</body>
+</html>
+
+
+
+

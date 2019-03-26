@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+	<title>WebUni - Education Template</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="WebUni Education Template">
+	<meta name="keywords" content="webuni, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="{% static 'img/favicon.ico' %}" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="{% static 'img/logo.png' %}" alt="">
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+
+					<nav class="main-menu">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="#">About us</a></li>
+							<li><a href="courses.html">Courses</a></li>
+							<li><a href="blog.html">News</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Hero section -->
+	<section class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}"  style="height:100%;">
+		<div class="container">
+			<div class="row" >
+				<div class="col-lg-10 offset-lg-1" style="margin-top:30%;">
+					<form class="intro-newslatter" action ="{% url 'auth:register' %}"  method="POST">
+						{% csrf_token %}
+						<input type="text" name="username" placeholder="Username">
+						<input type="email" name="email" class="last-s" placeholder="E-mail"><br><br>
+                        <br><input type="text" name="password"  placeholder="password">
+                         <div class="form-group">
+
+							<label>
+							  <input class="with-gap" value="student" name="type" type="radio" checked/>
+							  <h5 style="color:white">Student&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+							</label>
+
+							<label>
+							  <input class="with-gap" value="trainer" name="type" type="radio" style="color:white"  />
+							  <h5 style="color:white">Trainer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+							</label>
+
+							<label>
+							  <input class="with-gap" value="admin" name="type" type="radio" style="color:white" />
+							  <h5 style="color:white">Admin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h5>
+							</label>
+
+                        </div>
+						<div class="form-group">
+							<input type="submit" class="site-btn" value="Create Account"></input>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/mixitup.min.js' %}"></script>
+	<script src="{% static 'js/circle-progress.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+</html>
