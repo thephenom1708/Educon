@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+  	<meta charset="utf-8" />
+	<script src="https://meet.jit.si/external_api.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+            var domain = "meet.jit.si";
+			var options = {
+			roomName: "{{ session.session_name }}",
+			width: 700,
+			height: 700,
+			parentNode: document.querySelector('#meet')
+    	}
+		var api = new JitsiMeetExternalAPI(domain, options);
+			var subject = "{{ session.session_name }}";
+			var password = "{{ session.session_id }}";
+			var username = "{{ user.username }}";
+			var email = "{{ user.email }}";
+
+			api.executeCommand('email', email);
+			api.executeCommand('displayName', username);
+			api.executeCommand('subject', subject);
+			api.executeCommand('password', password);
+		});
+
+	</script>
+</head>
+
+<body id="meet">
+
+</body>
+
+</html>

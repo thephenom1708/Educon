@@ -10,8 +10,10 @@ class User(models.Model):
     def __str__(self):
         return self.username + '--' + self.type
 
+
 class Student(models.Model):
     username = models.CharField(max_length=100, primary_key=True)
+    email = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     mobile = models.CharField(max_length=10)

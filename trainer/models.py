@@ -4,7 +4,7 @@ import secrets
 
 
 class Course(models.Model):
-    course_id = models.CharField(max_length=10, primary_key=True)
+    course_id = models.CharField(max_length=25, primary_key=True)
     course_name = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
     no_of_students = models.CharField(max_length=5)
@@ -18,16 +18,20 @@ class Course(models.Model):
         self.course_id = secrets.token_hex(8)
         return self.course_id
 
-
     def __str__(self):
         return self.course_id + '--' + self.course_name + '--' + self.trainer
 
 
 class ClassroomSession(models.Model):
-    session_id = models.CharField(max_length=5, primary_key=True)
+    session_id = models.CharField(max_length=10, primary_key=True)
+    course_id = models.CharField(max_length=25)
     session_name = models.CharField(max_length=50)
     timestamp = models.DateTimeField(auto_now_add=True)
     duration = models.CharField(max_length=2)
+
+    def setSessionId(self):
+        self.session_id = secrets.token_hex(8)
+        return self.session_id
 
     def __str__(self):
         return self.session_name + '--' + self.duration
