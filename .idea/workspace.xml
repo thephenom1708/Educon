@@ -105,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/principal/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="128" column="55" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
+            <state relative-caret-position="169">
+              <caret line="134" column="1" selection-start-line="134" selection-start-column="1" selection-end-line="134" selection-end-column="1" />
               <folding>
                 <element signature="e#310#319#0" expanded="true" />
               </folding>
@@ -167,11 +167,6 @@
             <path>
               <item name="Educon" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Educon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Educon" type="462c0819:PsiDirectoryNode" />
-              <item name="principal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Educon" type="b2602c69:ProjectViewProjectNode" />
@@ -458,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/principal/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="128" column="55" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
+        <state relative-caret-position="169">
+          <caret line="134" column="1" selection-start-line="134" selection-start-column="1" selection-end-line="134" selection-end-column="1" />
           <folding>
             <element signature="e#310#319#0" expanded="true" />
           </folding>
