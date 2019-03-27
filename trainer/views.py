@@ -57,7 +57,7 @@ def courseInfo(request, course_id):
     user = getLoggedInUser(request)
     classroom_sessions = ClassroomSession.objects.filter(course_id=course_id)
     mapped_students = StudentCourse.objects.filter(course_id=course_id)
-    print(mapped_students)
+
     enrolled_students = []
 
     for student in mapped_students:

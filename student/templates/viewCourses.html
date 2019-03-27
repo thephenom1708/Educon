@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.username }}{% endblock %}
+{% load static %}
+{% block body %}
+
+	<div class="content">
+        <div class="container-fluid">
+			<h2>Our Offered Courses</h2>
+			<div class="row">
+			{% for course in courses %}
+				<div class="col-md-4">
+					<div class="card card-chart">
+						<div class="card-header card-header-success">
+							  <div>
+								  <img class="card-img-bottom" src="{{ course.image.url }}" alt="Card image" style="width:100%">
+							  </div>
+						</div>
+						<div class="card-body">
+				  			<h4 class="card-title">{{ course.course_name }}</h4>
+				  			<p class="card-category">{{ course.category }}</p>
+							<h5>Trainer: {{ course.trainer }}</h5>
+						</div>
+						<div class="card-footer">
+							<div class="stats">
+								<a href="{% url 'student:registerCourseInfo' course.course_id %}" class="btn btn-primary">Show details</a>
+				  			</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
