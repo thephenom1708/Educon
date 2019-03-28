@@ -6,7 +6,7 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<div class="card card-chart">
 						<div class="card-header card-header-primary">
 							<h4 class="card-title">{{ course.course_name }}</h4>
@@ -41,41 +41,78 @@
 						</div>
 						<div class="card-footer">
 							<div class="stats">
-								<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#sessionModal">Register</a>
+								<a href="{% url 'student:cancelEnrollment' course.course_id %}" class="btn btn-primary"">Cancel Enrollment</a>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
 
-				<div class="col-lg-6 col-md-8">
-				  <div class="card">
-					<div class="card-header card-header-warning">
-					  <h4 class="card-title">Previous Classroom Sessions</h4>
-					  <p class="card-category">Classrom Session Details</p>
-					</div>
-					<div class="card-body table-responsive">
-					  <table class="table table-hover">
-						<thead class="text-warning">
-						   <th>ID</th>
- 						  <th>Session name</th>
-						  <th>Duration</th>
-						</thead>
-						<tbody>
-						{% for session in classroom_sessions %}
-						  <tr>
-							<td>{{ session.session_id }}</td>
-							<td>{{ session.timestamp }}</td>
-							<td>{{ session.session_name }}</td>
-							<td>{{ session.duration }}</td>
-						  </tr>
-						{% endfor %}
-						</tbody>
-					  </table>
-					</div>
-				  </div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header card-header-warning">
+							<h4 class="card-title">Previous Classroom Sessions</h4>
+							<p class="card-category">Classrom Session Details</p>
+						</div>
+						<div class="card-body table-responsive">
+							<table class="table table-hover">
+								<thead class="text-warning">
+									<th>ID</th>
+									<th>Date and Time</th>
+									<th>Session name</th>
+									<th>Duration</th>
+									<th>Recording</th>
+								</thead>
+								<tbody>
+									{% for session in classroom_sessions %}
+									<tr>
+									<td>{{ session.session_id }}</td>
+									<td>{{ session.timestamp }}</td>
+									<td>{{ session.session_name }}</td>
+									<td>{{ session.duration }}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+				  	</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header card-header-success">
+							<h4 class="card-title">Shared Content</h4>
+							<p class="card-category">Content Details</p>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<thead class="text-primary">
+										<th>Date and Time</th>
+										<th>Content Name</th>
+										<th>Content File</th>
+						  			</thead>
+									<tbody>
+									{% for content in contents %}
+										<tr>
+											<td>{{ content.timestamp }}</td>
+											<td>{{ content.content_name }}</td>
+										  	<td><a href="{{ content.content_file.url }}">{{ content.content_file }}</a></td>
+											<td><a href="{{ content.content_file.url }}" download><button class="btn btn-danger btn-sm"><i class="material-icons">get_app</i></button></a></td>
+										</tr>
+									{% endfor %}
+						  			</tbody>
+								</table>
+					  		</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 

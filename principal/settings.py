@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'auth.apps.AuthConfig',
     'student.apps.StudentConfig',
     'trainer.apps.TrainerConfig',
+    'administrator.apps.AdministratorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,14 +126,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '/static/'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 

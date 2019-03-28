@@ -1,0 +1,73 @@
+{% extends 'baseAdmin.html' %}
+{% block title %}Admin Portal{% endblock %}
+{% load static %}
+{% block body %}
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header card-header-warning card-header-icon">
+						<div class="card-icon">
+							<i class="material-icons">perm_identity</i>
+						</div>
+						<p class="card-category">Total Trainers Enrolled</p><br>
+						<h3 class="card-title">{{ totalTrainers }}</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header card-header-success card-header-icon">
+						<div class="card-icon">
+							<i class="material-icons">assignment_ind</i>
+						</div>
+						<p class="card-category">Total Students Enrolled</p><br>
+						<h3 class="card-title">{{ totalStudents }}</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header card-header-primary">
+					<h4 class="card-title">Enrolled Students</h4>
+					<p class="card-category">Student Details</p>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead class=" text-primary">
+							<th>Username</th>
+							<th>Name</th>
+							<th>Email ID</th>
+							<th>City</th>
+							<th>Institute</th>
+							</thead>
+							<tbody>
+							{% for student in students %}
+							<tr>
+								<td>{{ student.username }}</td>
+								<td>{{ student.first_name }} {{ student.last_name }}</td>
+								<td>{{ student.email }}</td>
+								<td>{{ student.city }}</td>
+								<td>{{ student.institute }}</td>
+							</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+{% endblock %}
+

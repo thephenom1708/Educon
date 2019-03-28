@@ -3,8 +3,27 @@
 {% load static %}
 {% block body %}
 
+
 	<div class="content">
         <div class="container-fluid">
+			{% if flag is not None %}
+				{% if flag == 1 %}
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<i class="material-icons">close</i>
+						</button>
+						<span>{{ msg }}</span>
+					</div>
+				{% elif flag == 0 %}
+					<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<i class="material-icons">close</i>
+						</button>
+						<span>{{ msg }}</span>
+					</div>
+				{% endif %}
+			{% endif %}
+
 			<h2>Our Offered Courses</h2>
 			<div class="row">
 			{% for course in courses %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from auth.models import User, Student
-from .models import Course, ClassroomSession
+from .models import Course, ClassroomSession, Content
 from student.models import StudentCourse
 # Create your views here.
 
@@ -13,11 +13,20 @@ def getLoggedInUser(request):
 
 def dashboard(request):
     user = getLoggedInUser(request)
+    totalStudents = Student.objects.count()
+    totalCourses = Course.objects.count()
+    totalSessions = ClassroomSession.objects.count()
+    totalTrainers = User.objects.filter(type='trainer').count()
+
     courses = Course.objects.filter(trainer=user.username)
     context = {
         'user': user,
         'page': 'dashboard',
-        'courses': courses
+        'courses': courses,
+        'totalStudents': totalStudents,
+        'totalCourses': totalCourses,
+        'totalSessions': totalSessions,
+        'totalTrainers': totalTrainers
     }
     return render(request, 'trainerPortal.html', context)
 
@@ -39,10 +48,20 @@ def addCourse(request):
 
         newCourse.course_id = newCourse.setCourseId()
         newCourse.save()
+
+        totalStudents = Student.objects.count()
+        totalCourses = Course.objects.count()
+        totalSessions = ClassroomSession.objects.count()
+        totalTrainers = User.objects.filter(type='trainer').count()
+
         context = {
             'user': user,
             'page': 'dashboard',
-            'courses': courses
+            'courses': courses,
+            'totalStudents': totalStudents,
+            'totalCourses': totalCourses,
+            'totalSessions': totalSessions,
+            'totalTrainers': totalTrainers
         }
         return render(request, 'trainerPortal.html', context)
     else:
@@ -57,12 +76,14 @@ def courseInfo(request, course_id):
     user = getLoggedInUser(request)
     classroom_sessions = ClassroomSession.objects.filter(course_id=course_id)
     mapped_students = StudentCourse.objects.filter(course_id=course_id)
+    contents = Content.objects.filter(course_id=course_id)
 
     enrolled_students = []
 
     for student in mapped_students:
-        stu = get_object_or_404(Student, pk=student.username)
-        enrolled_students.append(stu)
+        stu = Student.objects.filter(username=student.username)
+        if len(stu) != 0:
+            enrolled_students.append(stu[0])
 
     if course_id is not None:
         course = get_object_or_404(Course, pk=course_id)
@@ -70,9 +91,10 @@ def courseInfo(request, course_id):
             'user': user,
             'course': course,
             'classroom_sessions': classroom_sessions,
-            'enrolled_students': enrolled_students
+            'enrolled_students': enrolled_students,
+            'contents': contents
         }
-        return render(request, 'courseInfo.html', context)
+        return render(request, 'trainerCourseInfo.html', context)
 
 
 def createSession(request, course_id):
@@ -90,6 +112,39 @@ def createSession(request, course_id):
             'user': user,
             'session': session
         }
-        return render(request, 'videoConference.html', context)
+        return render(request, 'trainerVideoConference.html', context)
+
+
+def shareContent(request, course_id):
+    user = getLoggedInUser(request)
+    classroom_sessions = ClassroomSession.objects.filter(course_id=course_id)
+    mapped_students = StudentCourse.objects.filter(course_id=course_id)
+
+    enrolled_students = []
+
+    for student in mapped_students:
+        stu = Student.objects.filter(username=student.username)
+        if len(stu) != 0:
+            enrolled_students.append(stu[0])
+
+    if request.method == "POST" and request.FILES['file']:
+        newContent = Content()
+        newContent.content_name = request.POST['name']
+        newContent.content_file = request.FILES.get('file', None)
+        newContent.course_id = course_id
+
+        newContent.save()
+        contents = Content.objects.filter(course_id=course_id)
+    if course_id is not None:
+        course = get_object_or_404(Course, pk=course_id)
+
+        context = {
+            'user': user,
+            'course': course,
+            'classroom_sessions': classroom_sessions,
+            'enrolled_students': enrolled_students,
+            'contents': contents
+        }
+        return render(request, 'trainerCourseInfo.html', context)
 
 

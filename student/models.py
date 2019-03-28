@@ -6,7 +6,9 @@ import secrets
 class StudentCourse(models.Model):
     id = models.CharField(max_length=25, primary_key=True)
     username = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     course_id = models.CharField(max_length=25)
+    course_name = models.CharField(max_length=100)
     approved = models.BooleanField(default=False)
 
     def setId(self):

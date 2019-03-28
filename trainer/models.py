@@ -36,3 +36,13 @@ class ClassroomSession(models.Model):
     def __str__(self):
         return self.session_name + '--' + self.duration
 
+
+class Content(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True, primary_key=True)
+    content_name = models.CharField(max_length=100)
+    content_file = models.FileField(default="")
+    course_id = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.content_name
+

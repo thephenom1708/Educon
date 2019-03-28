@@ -1,4 +1,4 @@
-	{% extends 'base.html' %}
+	{% extends 'trainerBase.html' %}
 	{% block title %}{{ course.course_name }}{% endblock %}
 	{% load static %}
 	{% block body %}
@@ -40,8 +40,17 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="stats">
-								<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#sessionModal">Create Classroom Session</a>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats">
+										<button class="btn btn-primary" data-toggle="modal" data-target="#sessionModal">Create Classroom Session</button>
+									</div>
+								</div>
+								<div class="col-md-4 offset-4">
+									<div class="stats">
+										<button class="btn btn-warning" data-toggle="modal" data-target="#contentModal">Share Content</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -81,6 +90,42 @@
 						</div>
 					</div>
 				</div>
+
+
+				<div class="modal fade" id="contentModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Content Sharing</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<form method="POST" action="{% url 'trainer:shareContent' course.course_id %}" enctype="multipart/form-data">
+								{% csrf_token %}
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="bmd-label-floating">Content Name</label>
+												<input type="text" name="name" class="form-control" required>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label for="file">Upload Content</label>
+											<input type="file" class="form-control" id="file" name="file" required>
+										</div>
+									</div>
+
+									<input type="submit" class="btn btn-primary pull-right" value="Share Content"></input>
+									<div class="clearfix"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
 
 				<div class="col-lg-6 col-md-8">
 				  <div class="card">
@@ -146,6 +191,39 @@
 				  	</div>
 				</div>
 			</div>
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header card-header-success">
+							<h4 class="card-title">Shared Content</h4>
+							<p class="card-category">Content Details</p>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<thead class="text-primary">
+										<th>Date and Time</th>
+										<th>Content Name</th>
+										<th>Content File</th>
+						  			</thead>
+									<tbody>
+									{% for content in contents %}
+										<tr>
+											<td>{{ content.timestamp }}</td>
+											<td>{{ content.content_name }}</td>
+										  	<td><a href="{{ content.content_file.url }}">{{ content.content_file }}</a></td>
+										</tr>
+									{% endfor %}
+						  			</tbody>
+								</table>
+					  		</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+
 
 		</div>
 	</div>

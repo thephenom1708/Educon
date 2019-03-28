@@ -22,7 +22,8 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^auth/', include('auth.urls')),
     url(r'^student/', include('student.urls')),
-    url(r'^trainer/', include('trainer.urls'))
+    url(r'^trainer/', include('trainer.urls')),
+    url(r'^administrator/', include('administrator.urls'))
 ]
 
 if settings.DEBUG:
