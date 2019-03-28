@@ -30,7 +30,6 @@ def register(request):
         request.session['type'] = new_user.type
         request.session['username'] = new_user.username
 
-
         courses = Course.objects.filter(trainer=new_user.username)
 
         totalStudents = Student.objects.count()
@@ -140,7 +139,7 @@ def login(request):
                     'totalTrainers': totalTrainers,
                 }
                 return render(request, 'adminPortal.html', context)
-    return render(request, 'index.html')
+    return render(request, 'login.html')
 
 
 def logout(request):
