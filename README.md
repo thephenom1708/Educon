@@ -1,6 +1,6 @@
 # Educon
 - Principal Hackathon 2019 Winning Project
-* Idea is to create Virtual Online learning environment (learn-on-the-go) to allow Teachers and Students effectively communicate, collaborate, interact remotely 
+* Idea is to create **Virtual Online learning environment** (learn-on-the-go) to allow Teachers and Students effectively communicate, collaborate, interact remotely. 
 * Essential features  - Classroom creation, enrollment to classroom, Video conference, content sharing, way for conversation - voice, chat etc, session recording & replay and much more.
 
 ## Technology Stack
